@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import '../styles/ArrayBox.css'
+import '../styles/arrayBox.css'
 
 function ArrayBox( {inputArray} ) {
     return(
