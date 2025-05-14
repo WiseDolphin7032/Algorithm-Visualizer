@@ -1,0 +1,19 @@
+.array-box {
+    background-color: rgb(185, 0, 0);
+    border: 1.5px black solid;
+    width: 5vh;
+    height: 5vh;
+    margin: 1px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.array-box p {
+    font-family: monospace;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    margin: 0;
+}
