@@ -1,4 +1,4 @@
-import Screen from './componets/Screen.jsx'
+import Screen from './components/Screen.jsx'
 
 function App() {
 
