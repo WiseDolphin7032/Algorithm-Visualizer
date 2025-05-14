@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 
-function MergeSort({inputArray, sortedArray}) {
+function MergeSort({inputArray, sortedArray, runSort, setRunSort, setUnsortedArray}) {
     useEffect(() => {
       if (inputArray && inputArray.length > 0) {
         const arrayCopy = [...inputArray];
+        setUnsortedArray(inputArray);
 
         function algorithm(array, left, right) {
           if (left >= right) {
@@ -56,11 +57,13 @@ function MergeSort({inputArray, sortedArray}) {
               array2Index++;
           }
         }
-        
         algorithm(arrayCopy, 0, arrayCopy.length - 1);
         sortedArray(arrayCopy);
       }
-    }, [])
+      const state = false; 
+      setRunSort(state);
+
+    }, [runSort])
 
     return(  
         <></>

@@ -6,6 +6,7 @@ import MergeSort from "./MergeSort.jsx";
 
 function Screen() {
   const [showNav, setShowNav] = useState(false);
+  const [unsortedArray, setUnsortedArray] = useState([]);
   const [array, setArray] = useState([3,6,9,4,1,2,5,7,8,0]);
   const [runSort, setRunSort] = useState(false);
 
@@ -33,13 +34,17 @@ function Screen() {
         <div className="array-container">
           <ArrayBox inputArray={array}></ArrayBox>
         </div>
-        {runSort && (<MergeSort inputArray={array} sortedArray={(arr) => setArray(arr)}></MergeSort>)}
+        {runSort && (<MergeSort inputArray={array} sortedArray={(arr) => setArray(arr)} runSort={runSort} 
+          setRunSort={(state) => setRunSort(state)} setUnsortedArray={(unsorted) => setUnsortedArray(unsorted)}></MergeSort>)}
       </div>
 
       <div className="command-buttons">
         <button className="start-button" onClick={() => setRunSort(true)}>Start</button>
         <button className="stop-button">Stop</button>
-        <button className="reset-button">Reset</button>
+        <button className="reset-button" onClick={() => {
+          setArray(unsortedArray);
+          setRunSort(false);
+        }}>Reset</button>
       </div>
     </div>
 
