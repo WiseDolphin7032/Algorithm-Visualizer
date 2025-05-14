@@ -4,7 +4,6 @@ function MergeSort({inputArray, sortedArray, runSort, setRunSort, setUnsortedArr
     useEffect(() => {
       if (inputArray && inputArray.length > 0) {
         const arrayCopy = [...inputArray];
-        setUnsortedArray(inputArray);
 
         function algorithm(array, left, right) {
           if (left >= right) {
@@ -59,7 +58,14 @@ function MergeSort({inputArray, sortedArray, runSort, setRunSort, setUnsortedArr
         }
         algorithm(arrayCopy, 0, arrayCopy.length - 1);
         sortedArray(arrayCopy);
+        
+        let equal = true; 
+        for (let i = 0; i < inputArray.length; i++) {
+            if (inputArray[i] !== arrayCopy[i]) equal = false; 
+        }
+        if (!equal) setUnsortedArray(inputArray);
       }
+
       const state = false; 
       setRunSort(state);
 
