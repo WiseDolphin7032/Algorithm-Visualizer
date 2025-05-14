@@ -1,5 +1,5 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import {useState} from "react";
+import React, {useState} from "react";
 import NavBar from "./NavBar.jsx";
 import ArrayBox from "./ArrayBox.jsx";
 import MergeSort from "./MergeSort.jsx";

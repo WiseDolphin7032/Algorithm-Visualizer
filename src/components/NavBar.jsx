@@ -1,6 +1,6 @@
 import '../styles/navbar.css'
 import { AiOutlineClose } from 'react-icons/ai';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function NavBar( {className, closeNav, onArrayChange} ) {
   const [inputValue, setInputValue] = useState('');
