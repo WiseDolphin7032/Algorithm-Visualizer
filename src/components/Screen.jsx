@@ -7,8 +7,14 @@ import MergeSort from "./MergeSort.jsx";
 function Screen() {
   const [showNav, setShowNav] = useState(false);
   const [unsortedArray, setUnsortedArray] = useState([]);
-  const [array, setArray] = useState([3,6,9,4,1,2,5,7,8,0]);
+  const [array, setArray] = useState(() => 
+    [3,6,9,4,1,2,5,7,8,0].map((value, index) => ({
+      id: index,
+      value: value,
+    }))
+  );
   const [runSort, setRunSort] = useState(false);
+  const [splits, setSplits] = useState([]);
 
   return( 
     <div className="screen">
@@ -32,10 +38,11 @@ function Screen() {
 
       <div className="animation-section">
         <div className="array-container">
-          <ArrayBox inputArray={array}></ArrayBox>
+          <ArrayBox inputArray={array} splits={splits}></ArrayBox>
         </div>
         {runSort && (<MergeSort inputArray={array} sortedArray={(arr) => setArray(arr)} runSort={runSort} 
-          setRunSort={(state) => setRunSort(state)} setUnsortedArray={(unsorted) => setUnsortedArray(unsorted)}></MergeSort>)}
+          setRunSort={(state) => setRunSort(state)} setUnsortedArray={(unsorted) => setUnsortedArray(unsorted)}
+          setSplits={setSplits}></MergeSort>)}
       </div>
 
       <div className="command-buttons">

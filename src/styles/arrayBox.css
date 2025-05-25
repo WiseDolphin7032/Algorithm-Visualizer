@@ -1,3 +1,10 @@
+.array-level {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
 .array-box {
     background-color: rgb(185, 0, 0);
     border: 1.5px black solid;
@@ -16,4 +23,38 @@
     color: white;
     text-align: center;
     margin: 0;
+}
+
+.slide-left {
+    animation-name: slideLeft;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.slide-right {
+    animation-name: slideRight;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.slide-up {
+    animation-name: slideUp;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slideLeft {
+    from { transform: translate(0px, 0px); }
+    to { transform: translate(-30px, 50px); }
+}
+
+@keyframes slideRight {
+    from { transform: translate(0px, 0px); }
+    to { transform: translate(30px, 50px); }   
+}
+
+@keyframes slideUp {
+    from { transform: translate(0px, 0px); }
+    to { transform: translate(0px, -50px); }
+    
 }

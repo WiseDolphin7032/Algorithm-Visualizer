@@ -5,6 +5,7 @@ html, body {
 }
 
 .screen {
+    width: 100vw;
     background-color: rgb(48, 48, 48);
     height: 100vh;
     display: flex;
