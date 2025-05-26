@@ -14,21 +14,16 @@ function ArrayBox( {inputArray, splits} ) {
 
           {splits.map((split, index) => (
             <div className='array-level' key={index}>
-              {split.elements.map((value, i) => {
-                let name = 'array-box';
-                if (split.side === 'left') {
-                  name += ' slide-left';
-                }
-                else if (split.side === 'right') {
-                  name += ' slide-right';
-                }
-                console.log("Rendering split", index, split);
-                return (
-                  <div className={name} key={i}>
-                    <p>{value.value ?? value}</p>
-                  </div>
-                );
-              })}
+              {split.left.elements.map((value, i) => (
+                <div className='array-box slide-left' key={`l${i}`}>
+                  <p>{value.value ?? value}</p>
+                </div>
+              ))}
+              {split.right.elements.map((value, i) => (
+                <div className='array-box slide-right' key={`r${i}`}>
+                  <p>{value.value ?? value}</p>
+                </div>
+              ))}
             </div>
           ))}
         </div>  

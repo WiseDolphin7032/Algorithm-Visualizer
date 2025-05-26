@@ -15,6 +15,7 @@ function Screen() {
   );
   const [runSort, setRunSort] = useState(false);
   const [splits, setSplits] = useState([]);
+  const [stopped, setStopped] = useState(false);
 
   return( 
     <div className="screen">
@@ -47,7 +48,7 @@ function Screen() {
 
       <div className="command-buttons">
         <button className="start-button" onClick={() => setRunSort(true)}>Start</button>
-        <button className="stop-button">Stop</button>
+        <button className="stop-button" onClick={() => setStopped(true)}>Stop</button>
         <button className="reset-button" onClick={() => {
           setArray(unsortedArray);
           setRunSort(false);
