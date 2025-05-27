@@ -1,8 +1,10 @@
 .array-level {
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
     position: relative;
+    height: 80px;
+    width: 100%;
 }
 
 .array-box {
@@ -15,7 +17,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
+    transition: transform 0.5s ease;
 }
 
 .array-box p {
@@ -45,17 +47,17 @@
 }
 
 @keyframes slideLeft {
-    from { transform: translate(0px, 0px); }
-    to { transform: translate(-30px, 50px); }
+    from { transform: translate(0px, -40px); }
+    to { transform: translate(-30px, 10px); }
 }
 
 @keyframes slideRight {
-    from { transform: translate(0px, 0px); }
-    to { transform: translate(30px, 50px); }   
+    from { transform: translate(0px, -40px); }
+    to { transform: translate(30px, 10px); }   
 }
 
 @keyframes slideUp {
     from { transform: translate(0px, 0px); }
-    to { transform: translate(0px, -50px); }
+    to { transform: translate(0px, -20px); }
     
 }

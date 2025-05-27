@@ -1,5 +1,5 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import NavBar from "./NavBar.jsx";
 import ArrayBox from "./ArrayBox.jsx";
 import MergeSort from "./MergeSort.jsx";
@@ -11,11 +11,11 @@ function Screen() {
     [3,6,9,4,1,2,5,7,8,0].map((value, index) => ({
       id: index,
       value: value,
+      position: index
     }))
   );
   const [runSort, setRunSort] = useState(false);
   const [splits, setSplits] = useState([]);
-  const [stopped, setStopped] = useState(false);
 
   return( 
     <div className="screen">

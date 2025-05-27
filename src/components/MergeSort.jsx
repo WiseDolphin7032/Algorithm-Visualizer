@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect} from "react";
+import ArrayBox from "./ArrayBox";
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -13,13 +14,19 @@ function MergeSort({inputArray, sortedArray, runSort, setRunSort, setUnsortedArr
               return;
           }
       let middle = Math.floor(left + (right - left) / 2);
-      const leftArray = array.slice(left, middle + 1);
-      const rightArray = array.slice(middle + 1, right + 1);
+      const leftArray = array.slice(left, middle + 1).map((item, i) => ({
+        ...item,
+        position: left + i,
+      }));
+      const rightArray = array.slice(middle + 1, right + 1).map((item, i) => ({
+        ...item,
+        position: middle + 1 + i,
+      }));
 
       setSplits(prev => [
         ...prev,
         {
-          locaiton: depth,
+          location: depth,
           left: { elements: leftArray},
           right: { elements: rightArray}
         }
