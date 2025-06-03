@@ -1,21 +1,47 @@
 import { GiHamburgerMenu } from "react-icons/gi";
-import React, {useState, useRef} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import NavBar from "./NavBar.jsx";
-import ArrayBox from "./ArrayBox.jsx";
-import MergeSort from "./MergeSort.jsx";
-
+import ArrayContainer from "./ArrayContainer.jsx";
+import mergeSort from "../logic/mergeSort.js";
 function Screen() {
   const [showNav, setShowNav] = useState(false);
-  const [unsortedArray, setUnsortedArray] = useState([]);
-  const [array, setArray] = useState(() => 
-    [3,6,9,4,1,2,5,7,8,0].map((value, index) => ({
-      id: index,
-      value: value,
-      position: index
-    }))
-  );
+  const [array, setArray] = useState([3, 6, 9, 4, 1, 2, 5, 7, 8, 0]);
+  const [resetArray, setResetArray] = useState([]); 
+  const [sortedArray, setSortedArray] = useState([]);
+
+  
   const [runSort, setRunSort] = useState(false);
-  const [splits, setSplits] = useState([]);
+  const [stopAnimation, setStopAnimation] = useState(false);
+  const animationRef = useRef();
+
+  useEffect(() => {
+    if (runSort && animationRef.current) {
+      const run = async () => {
+        animationRef.current.innerHTML = "";
+        setResetArray([...array]);
+        const test = await mergeSort(array, 0, array.length - 1, animationRef.current);
+        const returnedArray = Array.from(test.querySelectorAll('.array-box p')).map(el => parseInt(el.textContent));
+        setSortedArray(returnedArray);
+
+        setRunSort(false); 
+      };
+
+      if ((resetArray.length === 0 && sortedArray.length === 0) || !equalArrays(resetArray, sortedArray)) {
+        run();
+      }
+      
+    }
+  }, [runSort])
+
+
+  function equalArrays(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    const resetSorted = [...arr1].sort((a, b) => a - b);
+    for (let i = 0; i < resetSorted.length; i++) {
+      if (resetSorted[i] !== arr2[i]) return false;
+    }
+    return true;
+  }
 
   return( 
     <div className="screen">
@@ -37,22 +63,24 @@ function Screen() {
         </div>
       </header>
 
-      <div className="animation-section">
-        <div className="array-container">
-          <ArrayBox inputArray={array} splits={splits}></ArrayBox>
-        </div>
-        {runSort && (<MergeSort inputArray={array} sortedArray={(arr) => setArray(arr)} runSort={runSort} 
-          setRunSort={(state) => setRunSort(state)} setUnsortedArray={(unsorted) => setUnsortedArray(unsorted)}
-          setSplits={setSplits}></MergeSort>)}
+      <div className="animation-section" ref={animationRef}>
+        {!runSort && <ArrayContainer array={array} />}
       </div>
 
       <div className="command-buttons">
         <button className="start-button" onClick={() => setRunSort(true)}>Start</button>
-        <button className="stop-button" onClick={() => setStopped(true)}>Stop</button>
+        <button className="stop-button">Stop</button>
         <button className="reset-button" onClick={() => {
-          setArray(unsortedArray);
+          if (runSort) {
+            document.querySelector('.command-buttons').innerHTML += "<p class='error'>Animation in Progress Please Wait.</p>";
+            return;
+          }
+
+          setArray([...resetArray]);
+          setSortedArray([]);
           setRunSort(false);
-        }}>Reset</button>
+        }}
+        >Reset</button>
       </div>
     </div>
 

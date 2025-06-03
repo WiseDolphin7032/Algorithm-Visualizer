@@ -17,7 +17,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.5s ease;
 }
 
 .array-box p {
@@ -28,36 +27,3 @@
     margin: 0;
 }
 
-.slide-left {
-    animation-name: slideLeft;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-}
-
-.slide-right {
-    animation-name: slideRight;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-}
-
-.slide-up {
-    animation-name: slideUp;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes slideLeft {
-    from { transform: translate(0px, -40px); }
-    to { transform: translate(-30px, 10px); }
-}
-
-@keyframes slideRight {
-    from { transform: translate(0px, -40px); }
-    to { transform: translate(30px, 10px); }   
-}
-
-@keyframes slideUp {
-    from { transform: translate(0px, 0px); }
-    to { transform: translate(0px, -20px); }
-    
-}
