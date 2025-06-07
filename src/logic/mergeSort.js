@@ -5,7 +5,7 @@ export function createSubArray(array, left, right, level = 0, position = 'center
     container.className = 'array-container';
     container.style.position = 'absolute';
 
-    const levelHeight = 60 + (level * 80);
+    const levelHeight = 60 + (level * 60);
     let horizontalOffset = 0;
 
     if (parentPosition && (position === 'left' || position === 'right')) {
@@ -57,13 +57,13 @@ async function animateDivision(division, direction, delay = 0) {
                     transform: finalTransform 
                 }
             ], {
-                duration: 800,
+                duration: 450,
                 easing: 'ease-in-out',
                 fill: 'forwards'
             });
             division.style.top = `${finalTop}px`;
             division.style.transform = finalTransform;
-            setTimeout(resolve, 800);
+            setTimeout(resolve, 450);
         }, delay);
     });
 }
@@ -75,7 +75,7 @@ async function cleanupSubarrays(leftDiv, rightDiv, delay = 0) {
                 { opacity: 1 },
                 { opacity: 0 }
             ], {
-                duration: 300,
+                duration: 200,
                 fill: 'forwards'
             });
             
@@ -83,7 +83,7 @@ async function cleanupSubarrays(leftDiv, rightDiv, delay = 0) {
                 { opacity: 1 },
                 { opacity: 0 }
             ], {
-                duration: 300,
+                duration: 200,
                 fill: 'forwards'
             });
             
@@ -91,7 +91,7 @@ async function cleanupSubarrays(leftDiv, rightDiv, delay = 0) {
                 leftDiv.remove();
                 rightDiv.remove();
                 resolve();
-            }, 300);
+            }, 200);
         }, delay);
     });
 }
@@ -143,7 +143,7 @@ async function animateBoxMerge(sourceDiv, targetDiv, sourceIndex, targetIndex, v
                     opacity: 0
                 }
             ], {
-                duration: 800,
+                duration: 450,
                 easing: 'ease-in-out',
                 fill: 'forwards'
             });
@@ -157,8 +157,8 @@ async function animateBoxMerge(sourceDiv, targetDiv, sourceIndex, targetIndex, v
                     targetBox.style.transform = 'scale(1)';
                     cloneBox.remove();
                     resolve();
-                }, 400);
-            }, 600);
+                }, 250);
+            }, 350);
             
         }, delay);
     });
@@ -172,11 +172,11 @@ async function merge(array, left, middle, right, leftDiv, rightDiv, parentDiv) {
     while (i < leftArray.length && j < rightArray.length) {
         if (leftArray[i] <= rightArray[j]) {
             array[k] = leftArray[i];
-            await animateBoxMerge(leftDiv, parentDiv, i, k - left, leftArray[i], 200);
+            await animateBoxMerge(leftDiv, parentDiv, i, k - left, leftArray[i], 150);
             i++;
         } else {
             array[k] = rightArray[j];
-            await animateBoxMerge(rightDiv, parentDiv, j, k - left, rightArray[j], 200);
+            await animateBoxMerge(rightDiv, parentDiv, j, k - left, rightArray[j], 150);
             j++;
         }
         k++;
@@ -184,14 +184,14 @@ async function merge(array, left, middle, right, leftDiv, rightDiv, parentDiv) {
 
     while (i < leftArray.length) {
         array[k] = leftArray[i];
-        await animateBoxMerge(leftDiv, parentDiv, i, k - left, leftArray[i], 200);
+        await animateBoxMerge(leftDiv, parentDiv, i, k - left, leftArray[i], 150);
         i++;
         k++;
     }
     
     while (j < rightArray.length) {
         array[k] = rightArray[j];
-        await animateBoxMerge(rightDiv, parentDiv, j, k - left, rightArray[j], 200);
+        await animateBoxMerge(rightDiv, parentDiv, j, k - left, rightArray[j], 150);
         j++;
         k++;
     }
@@ -215,7 +215,7 @@ export default async function mergeSort(array, left, right, container, level = 0
     if (position === 'left' || position === 'right') {
         await animateDivision(curr, position);
     } else {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, 300));
     }
 
     if (left === right) {
@@ -223,13 +223,13 @@ export default async function mergeSort(array, left, right, container, level = 0
     }
 
     const middle = Math.floor(left + (right - left) / 2);
-    await new Promise((resolve) => setTimeout(resolve, 300));
+    await new Promise((resolve) => setTimeout(resolve, 200));
     const leftSubarray = await mergeSort(array, left, middle, container, level + 1, 'left', curr);
     const rightSubarray = await mergeSort(array, middle + 1, right, container, level + 1, 'right', curr);
 
     if (leftSubarray && rightSubarray) {
         await merge(array, left, middle, right, leftSubarray, rightSubarray, curr);
-        await cleanupSubarrays(leftSubarray, rightSubarray, 500);
+        await cleanupSubarrays(leftSubarray, rightSubarray, 300);
     }
     return curr;
 }

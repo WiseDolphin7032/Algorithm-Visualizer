@@ -76,6 +76,17 @@ html, body {
     display: flex;
 }
 
+.animation-in-progress-text {
+    margin-left: 20px;
+    text-align: center;
+    font-family: monospace, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    opacity: 0;
+}
+
+
 .command-buttons button {
     width: 120px;
     height: 50px;
@@ -87,6 +98,12 @@ html, body {
     color: white;
     cursor: pointer;
     transition: transform 0.2s ease-in;
+}
+
+.buttons {
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .command-buttons button:hover {

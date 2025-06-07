@@ -11,7 +11,8 @@ function Screen() {
 
   
   const [runSort, setRunSort] = useState(false);
-  const [stopAnimation, setStopAnimation] = useState(false);
+  const [sorted, setSorted] = useState(false);
+  const [showAnimationText, setShowAnimationText] = useState(false);
   const animationRef = useRef();
 
   useEffect(() => {
@@ -23,7 +24,8 @@ function Screen() {
         const returnedArray = Array.from(test.querySelectorAll('.array-box p')).map(el => parseInt(el.textContent));
         setSortedArray(returnedArray);
 
-        setRunSort(false); 
+        setRunSort(false);
+        setSorted(true); 
       };
 
       if ((resetArray.length === 0 && sortedArray.length === 0) || !equalArrays(resetArray, sortedArray)) {
@@ -55,7 +57,7 @@ function Screen() {
         </div>
         
         <div className="title">
-          <h1 className="text">Shayaan's Algorithm Visualizer</h1>
+          <h1 className="text">MergeSort Algorithm Visualizer</h1>
         </div>
         
         <div className="placeholder">
@@ -64,23 +66,36 @@ function Screen() {
       </header>
 
       <div className="animation-section" ref={animationRef}>
-        {!runSort && <ArrayContainer array={array} />}
+        {!sorted && !runSort && <ArrayContainer array={array} />}
       </div>
 
       <div className="command-buttons">
-        <button className="start-button" onClick={() => setRunSort(true)}>Start</button>
-        <button className="stop-button">Stop</button>
-        <button className="reset-button" onClick={() => {
-          if (runSort) {
-            document.querySelector('.command-buttons').innerHTML += "<p class='error'>Animation in Progress Please Wait.</p>";
-            return;
-          }
-
-          setArray([...resetArray]);
-          setSortedArray([]);
-          setRunSort(false);
-        }}
-        >Reset</button>
+        <p className="animation-in-progress-text" 
+          style={{opacity: showAnimationText ? 1 : 0, transition: 'opacity 0.3s'}}>Animation in Progress Please Wait.</p>
+        <div className="buttons">
+          <button className="start-button" onClick={() => setRunSort(true)}>Start</button>
+          <button className="reset-button" onClick={() => {
+            if (runSort && !sorted) {
+              setShowAnimationText(true);
+              setTimeout(() => setShowAnimationText(false), 2000);
+              return;
+            }
+            else if (resetArray.length === 0) {
+              return;
+            }
+            else {
+              setArray([...resetArray]);
+              setSortedArray([]);
+              setSorted(false);
+              setRunSort(false);
+              animationRef.current.innerHTML = "";
+            }
+            
+            
+            
+          }}
+          >Reset</button>
+        </div>
       </div>
     </div>
 
