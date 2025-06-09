@@ -22,8 +22,7 @@ html, body {
 }
 
 .menu, 
-.title, 
-.placeholder {
+.settings {
     flex: 1;
     display: flex;
     align-items: center;
@@ -31,15 +30,33 @@ html, body {
 
 .menu {
     justify-content: flex-start;
-    padding-left: 30px;
+    padding-left: 20px;
 }
 
 .title {
+    flex: 2;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    white-space: nowrap;
 }
 
-.placeholder {
+.settings {
+    padding-right: 20px;
     justify-content: flex-end;
+}
+
+.settings-button {
+    background-color: transparent;
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease-in;
+}
+
+.settings-button:hover {
+    transform: scale(1.2);
 }
 
 .panel-button {
@@ -112,10 +129,6 @@ html, body {
 
 .start-button {
     background-color: green;
-}
-
-.stop-button {
-    background-color: rgb(185, 0, 0);
 }
 
 .reset-button {
