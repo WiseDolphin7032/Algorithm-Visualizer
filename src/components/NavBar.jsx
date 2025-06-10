@@ -16,9 +16,6 @@ function NavBar( {className, closeNav} ) {
         <li>
           <Link to="/SelectionSort">Selection Sort</Link>
         </li>
-        <li>
-          <Link to="/">DFS</Link>
-        </li>
       </ul>
       <AiOutlineClose className='close-icon' onClick={closeNav}></AiOutlineClose>
     </div>
