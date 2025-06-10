@@ -1,0 +1,16 @@
+.array-box.comparing {
+    background-color: #ffeb3b;
+    border-color: #ff9800;
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.4);
+}
+
+.array-box.sorted {
+    background-color: #4caf50;
+    border-color: #2e7d32;
+    color: white;
+}
+
+.array-box.highlighted {
+    background-color: rgba(14, 211, 135, 0.4);
+    border-color: #000000;
+}

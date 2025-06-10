@@ -14,10 +14,10 @@ function NavBar( {className, closeNav} ) {
           <Link to="/BubbleSort">Bubble-Sort</Link>
         </li>
         <li>
-          <Link to="/">DFS</Link>
+          <Link to="/SelectionSort">Selection Sort</Link>
         </li>
         <li>
-          <Link to="/">Linked List</Link>
+          <Link to="/">DFS</Link>
         </li>
       </ul>
       <AiOutlineClose className='close-icon' onClick={closeNav}></AiOutlineClose>

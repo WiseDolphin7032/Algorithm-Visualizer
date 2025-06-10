@@ -1,6 +1,6 @@
-import '../styles/bubbleSort.css'
+import '../styles/comparing.css'
 
-async function animateSwap(smallerIndex, largerIndex, boxes) {
+export async function animateSwap(smallerIndex, largerIndex, boxes) {
     const smallerElement = boxes[smallerIndex];
     const largerElement = boxes[largerIndex];
 
@@ -65,7 +65,7 @@ export default async function bubbleSort(array, length, container) {
         let swapped = false;
         for (let j = 0; j < length - i - 1; j++) {
             if (array[j] > array[j + 1]) {
-                await animateSwap(j + 1, j, boxes, container);
+                await animateSwap(j + 1, j, boxes);
 
                 temp = array[j];
                 array[j] = array[j + 1];
@@ -73,7 +73,7 @@ export default async function bubbleSort(array, length, container) {
                 swapped = true; 
             }
             else {
-                await showComparing(j, j + 1, boxes);
+                await showComparing(j, j + 1, boxes, false);
             }
         }
         boxes[lastElement].classList.add('sorted');

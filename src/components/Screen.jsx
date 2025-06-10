@@ -19,6 +19,8 @@ function Screen() {
         return 'MergeSort Algorithm Visualizer'
       case '/BubbleSort':
         return 'BubbleSort Algorithm Visualizer'
+      case '/SelectionSort':
+        return 'Selection Sort Algorithm Visualizer'
       default: 
         return 'Algorithm Visualizer'
     }
