@@ -3,7 +3,7 @@ import React from 'react'
 import { HashRouter as Router, Route, Routes }  from 'react-router-dom'
 import BubbleSort from './pages/BubbleSort.jsx'
 import MergeSort from './pages/MergeSort.jsx'
-import SelectionSort from './pages/selectionSort.jsx'
+import SelectionSort from './pages/SelectionSort.jsx'
 
 function App() {
   return (
