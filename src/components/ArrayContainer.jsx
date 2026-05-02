@@ -13,4 +13,6 @@ function ArrayContainer({ array }) {
   );
 }
 
+print("ArrayContainer.jsx loaded");
+
 export default ArrayContainer;
